@@ -35,6 +35,25 @@ margin-right: 100%;
 }
 
 
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px; /* Tamanho de fonte menor para telas menores */
+    }
+    .conteudo {
+        flex-direction: column; /* Altera o layout para coluna em telas menores */
+        align-items: center; /* Centraliza o conteúdo */
+    }
+    .rodape {
+        flex-direction: column; /* Altera o layout para coluna em telas menores */
+        align-items: center; /* Centraliza o conteúdo */
+    }
+}
+
+/* Estilo para imagens */
+img {
+    max-width: 100%; /* Garante que as imagens se ajustem ao tamanho da tela */
+    height: auto; /* Mantém a proporção da imagem */
+}
 
 
 
