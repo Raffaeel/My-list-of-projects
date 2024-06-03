@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do List</title>
+    <style>
+       body { 
+            background-color: black;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .conteiner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            background-color: #222;
+            border-radius: 20px;
+            border: 3px solid #555;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            margin-top: 50px;
+        }
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: aquamarine;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        input[type="text"], input[type="datetime-local"] {
+            width: calc(100% - 24px);
+            background-color: #333;
+            color: white;
+        }
+        button {
+            background-color: aquamarine;
+            color: black;
+            cursor: pointer;
+            width: 100%;
+        }
+        ul {
+            list-style-type: none;
+            padding: 25;
+            width: 100%;
+            position: relative;
+            left: -10px;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5% 0;
+            padding: 5%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: white;
+            background-color: #444;
+        }
+        .tarefa-concluida span {
+            text-decoration: line-through;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="conteiner">
+        <h1>My To Do List</h1>
+        <input type="text" id="novaTarefa" placeholder="Digite aqui">
+        <input type="datetime-local" id="dataHora">
+        <button id="addButton">Enviar</button>
+        <ul id="listaTarefa"></ul>
+    </div>
+    <script>
+        document.getElementById('addButton').onclick = function() {
+            const tarefaInput = document.getElementById('novaTarefa');
+            const dataHoraInput = document.getElementById('dataHora');
+            const lista = document.getElementById('listaTarefa');
+
+            const tarefaTexto = tarefaInput.value;
+            const dataHoraTexto = dataHoraInput.value;
+
+            if (tarefaTexto === '' || dataHoraTexto === '') {
+                alert("Por favor, preencha a tarefa e a data/hora.");
+                return;
+            }
+
+            const li = document.createElement('li');
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.onchange = function() {
+                if (checkbox.checked) {
+                    li.classList.add('tarefa-concluida');
+                } else {
+                    li.classList.remove('tarefa-concluida');
+                }
+            };
+
+            const span = document.createElement('span');
+            span.textContent = `${tarefaTexto} (para ${new Date(dataHoraTexto).toLocaleString()})`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Excluir';
+            deleteButton.onclick = function() {
+                lista.removeChild(li);
+            };
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            li.appendChild(deleteButton);
+            lista.appendChild(li);
+
+            // Limpar os campos de entrada
+            tarefaInput.value = '';
+            dataHoraInput.value = '';
+        };
+    </script>
+</body>
+</html>

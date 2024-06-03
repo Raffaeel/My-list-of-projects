@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora</title>
+    <style>
+            *{margin: 0%;
+                padding: 0%;
+            
+            
+            
+            }
+
+            .fundo {background-image: linear-gradient(85deg,black,rgb(37, 197, 194));  
+
+                    height: 100vh;
+                    color: aliceblue;
+                    font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+
+
+            }
+            .calculadora{
+                position: absolute;
+                background: linear-gradient(45deg,rgb(111, 188, 197),rgb(27, 30, 30));
+                top: 50%;
+                left: 50%;
+                transform:translate(-50%,-50%);
+                border-radius: 15px;
+                padding: 15px;
+
+
+
+            }
+            .botao {background-color: rgb(27, 24, 24);
+                    width: 50px;
+                    height: 50px;
+                    font-size: 25px;
+                    cursor: pointer;
+                    border: none;
+                    color: #fff;
+                    margin: 3px;
+
+
+            }
+            .botao:hover{background-color: black;
+
+            }
+
+            #resultado{
+                width: 221px;
+                height: 24px;;
+                font-size: 20px;
+                text-align: right;
+            }
+
+
+    </style>
+</head>
+<!... usei as divs para dividir cada parte >
+<body> 
+    <div class="fundo">
+    <div class="calculadora">
+            <h1>calculadora</h1>
+        <input type="text" id="resultado">   
+    <table> <!.. aqui fiz uma tabela para separar os numeros e os simbolos de operações>
+        <!...usei a class para utilisar no css depois >
+        <!... usei clean e back que ja é uma função do html e usei o onclick para chamar essa função>
+        <! ...usei onclick insert para passar os parametros dos numeros  e dos simbolos de operações para utilizar na function no js >
+            <tr>
+                <td> <button class="botao"onclick="clean('')">C</button></td>  
+                <td> <button class="botao"onclick="back('')"><</button></td>
+                <td> <button class="botao"onclick="insert('/')">/</button></td>
+                <td> <button class="botao"onclick="insert('*')">x</button></td>
+
+            </tr> 
+
+
+
+            <tr>
+                <td> <button class="botao" onclick="insert('7')">7</button></td>
+                <td> <button class="botao" onclick="insert('8')">8</button></td>
+                <td> <button class="botao" onclick="insert('9')">9</button></td>
+                <td> <button class="botao"onclick="insert('-')">-</button></td>
+
+            </tr> 
+
+            <tr>
+                <td> <button class="botao"onclick="insert('4')">4</button></td>
+                <td> <button class="botao"onclick="insert('5')">5</button></td>
+                <td> <button class="botao"onclick="insert('6')">6</button></td>
+                <td> <button class="botao"onclick="insert('+')">+</button></td>
+
+            </tr> 
+            <tr> <!... usei a funçao calcular  no sinal de = para ultilizar no js >
+                <td> <button class="botao"onclick="insert('1')">1</button></td>
+                <td> <button class="botao"onclick="insert('2')">2</button></td>
+                <td> <button class="botao"onclick="insert('3')">3</button></td>
+                <td rowspan="2" class="botao"onclick="calcular('')" style="height: 106px; " > <button> = </button></td>
+
+            </tr>
+
+            <tr>
+                <td colspan = "2" class="botao" onclick="insert('0')"style="width: 106px;"><button> 0 </button></td>
+                <td> <button class="botao"onclick="insert('.')">.</button></td>
+
+
+    </table>
+</input>
+</div>
+    
+</div>
+
+<script>
+    
+
+function insert (num) { // aqui estoi inserindo o numero na caixa  //
+   var numero = document.getElementById('resultado').value  // esse resultado de laranja  é o id que passei em html para pode inserir essa funçao 
+     document.getElementById('resultado').value=numero+num; // estou coloquando os numeros em sequecia quando eu aperto ex 12345//
+    
+}
+
+function clean () {
+document. getElementById('resultado').value =""; // aqui criei uma funçao para o botão c que apaga a caixa de saida
+}
+
+
+function back() { // aqui criei uma funçao para apagar  numero por numero caso eu erre a digiitação
+    
+    var resultado =document.getElementById('resultado').value;   // uma variavel resultados para guardar  esse document....
+    document.getElementById('resultado').value = resultado.substring(0,resultado .length -1)
+// aqui chamei o html no js com esse documen.... e fiz essa operaçao  para usar o botao de apagar um numero de cada vez
+// usei a sintaxes length para averiguar todos os numeros inseridos na caixa 
+    
+}
+function calcular(){
+    var resultado = document.getElementById('resultado').value;
+    
+            if(resultado){document.getElementById('resultado').value= eval(resultado);}
+
+    
+          else { document.getElementById('resultado').value= "nada..."
+          }
+
+
+
+    }
+// aqui criei uma variavel resultado novamente nessa funçao  para guardar os resultados das operações
+//  usei if e else  para averiguar  e eval para fazer todas as operaçoes funcionarem essa sitaxes ja é para isso .
+// e usei o else para averiguar se tem algum numero na caixa se nao tiver me envie a palavra nada ...
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+logica 
+1 criei as div para separa o processo para facilitar astilizaçao em css 
+2 crie um input com a funcao botão onclick passei os numeros 
+3 divide os numeros e linhas e monteis tabelas onde eu conseguiria intender melhor o codigo 
+4 criei as class para usar no css 
+5 usei o css deixei cada coisa em seu lugar 
+6  passei os parametros para os numeros com a sintaxes  "insert" 
+7 criei uma função em java script  com esse nome acima e passei o parametro num que é o que eu queria receber nessa funçao 
+8 criei a funçao clean  e usei esse nome para passar o parametro em html para a letra "c" 
+   que serviria para eu limpar a caixa de saida de numeros  para começar outra operação 
+    d
+9 criei a função back e passei omparametro pa o html  para fazer um botao que apaga um numero de cada vez 
+dentro dessa fiz uma logica para fazer esse botao 
+10 criei a funçao calcular e passei o parametro em html para o sinal de = dentro dessa funçao crie uma variavel para guardar os 
+resultados das operaçoes e usei "eval " uma sintax que é ulilazada para calcular qualquer tipo de operçao matematica e deposis disso usei o nome da variavel parar guardar o resultado 
+ 11 e usei  if e else para expecionar esse codigos para que se realmente tivesse alguma operaçao que ele execultasse se não tivesse que 
+ escrevesse "nada ..."

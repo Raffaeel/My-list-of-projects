@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{
+    background-color: rgb(7, 14, 12);
+    color: rgb(234, 242, 9);
+border-radius: 1em;
+padding: 1em;
+position: absolute;
+top: 100px;
+left: 650px;
+margin-right: 100%;
+
+
+}
+ .result{
+    background-color: rgb(238, 223, 11);
+    color: rgb(1, 10, 10);
+    padding: 50px;
+            margin-top: 10px;
+            border-radius: 5px;
+
+ }   
+
+ .conteiner {
+    border: 2px solid yellow; /* Adicionando borda */
+    padding: 20px;
+    border-radius: 10px; /* Arredondando as bordas */
+    width: 175px; /* Definindo uma largura fixa */
+    margin: 0 auto; /* Centralizando horizontalmente */
+}
+
+
+
+
+
+
+
+
+ </style>
+</head>
+<body>
+    <main class="tudo">
+         <div class="conteiner">
+            <div class="titulo"><h1>calculadora   imc</h1>
+   <div class="input">
+                  <label>Nome:</label>
+                  <input type="text" id="nome">
+     <div class="input">
+                        <label>Altura:</label>
+                        <input type="text" id="altura">
+     <div class="input">
+                            <label>Peso:</label>
+                            <input type="number" id="peso">
+
+                                <button id="calcular">calcular</button>
+                                <div class=" result " id="resultado" box ></div>
+                                
+
+
+                        </div>
+
+                        </div>
+            
+                    </div>
+            </div>
+         </div>
+</main>
+    
+
+   <script>
+
+const calcular = document.getElementById('calcular'); 
+        calcular.addEventListener('click', calcularIMC);
+
+        function calcularIMC() {
+            const nome = document.getElementById('nome').value;
+            const altura = parseFloat(document.getElementById('altura').value);
+            const peso = parseFloat(document.getElementById('peso').value);
+            const resultado = document.getElementById('resultado');
+
+            if (nome && altura && peso) {
+                const valorImc = (peso / (altura * altura)).toFixed(2);
+                resultado.textContent = `IMC de ${nome}: ${valorImc}`;
+
+                if (valorImc >= 18.5 && valorImc < 25) {
+                    resultado.textContent += ' - Peso normal';
+                } else if (valorImc >= 25 && valorImc < 30) {
+                    resultado.textContent += ' - Acima do peso';
+                } else if (valorImc >= 30 && valorImc < 40) {
+                    resultado.textContent += ' - Obeso';
+                } else {
+                    resultado.textContent += ' - Super obeso';
+                }
+            } else {
+                resultado.textContent = "Por favor, preencha todos os campos.";
+            }
+        }
+
+</script>
+</body>
